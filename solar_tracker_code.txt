@@ -1,0 +1,56 @@
+#include <Servo.h>
+
+//i = initial position of solar panel = East
+
+int servoPin = 3, i = 180;
+
+Servo servo1;
+
+void setup()
+{
+  pinMode(6,OUTPUT);
+  pinMode(A1,INPUT);
+  pinMode(A2,INPUT);
+  servo1.attach(servoPin);
+  servo1.write(i);
+}
+
+void loop()
+{
+  int val1 = analogRead(1);
+  int val2 = analogRead(2);
+  
+  if((val1 - val2 <= 4) || (val2 - val1 <= 4))
+  {
+    if(val1 < 45 || val2 < 45)
+	{
+      digitalWrite(6,HIGH);
+    }
+    //during an overcast day, the solar panel will wait for sun at position = 90°
+    else if(val1 < 300 || val2 < 300)
+	{
+      i = 90;
+      digitalWrite(6,LOW);
+    }
+    //at night, the solar panel will go back to initial position(180° = East)
+    else
+	{
+      i = 180;
+      digitalWrite(6,LOW);
+    }
+  }
+  else
+  {
+    if(val1 > val2)
+	{
+      i -= 1;
+    }
+    else
+	{
+      i += 1;
+    }
+  }
+  servo1.write(i);
+  delay(500);
+
+}
