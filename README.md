@@ -2,7 +2,7 @@
 
 Introduction
 
-This an Arduino-based project that aims to increase the power generation of a solar panel by ensuring it constantly faces the Sun. This project uses light-dependent resistors (LDRs) to detect sunlight and a servo motor to adjust the orientation of the solar panel accordingly. As the Sun moves, the solar panel tracks its position to maximize the amount of light falling on it.
+This an Arduino-based project that aims to increase the power generation of a solar panel by ensuring it constantly faces the Sun. This project uses light-dependent resistors (LDRs) to detect sunlight and a servo motor to adjust the orientation of the solar panel accordingly. The servo moves the solar panel towards the LDR whose resistance is lower, i.e. towards the LDR which is exposed to more light. As the Sun moves, the solar panel tracks its position to maximize the amount of light falling on it.
 
 Hardware Components Needed
 1. Arduino Uno
